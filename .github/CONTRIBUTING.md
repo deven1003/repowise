@@ -235,10 +235,24 @@ repowise/
 An agent CLI used as a backend (`claude_cli`, `codex_cli`, `opencode`) follows the
 agent platform recipe instead.
 
+Providers that most users need ship in core this way. A provider can also live in
+its own package: call `register_provider(name, factory)` from a plugin's
+`register()`; see the [plugin author guide](../docs/reference/PLUGINS.md).
+
 Adding a new language has a dedicated recipe, see
 [docs/architecture/language-support.md](../docs/architecture/language-support.md).
 Adding an agent integration or an agent CLI indexing backend has its own recipe, see
 [docs/architecture/agent-platform.md](../docs/architecture/agent-platform.md).
+
+### Extending Repowise with a plugin
+
+Write a plugin when your change serves one team or one system (an internal auth
+service, a chat app sink, a company report section) and an existing registry or
+seam already covers it. Open a core PR when the change helps most users or fixes
+behaviour. A new seam starts as an issue that describes its contract, when it
+runs and what a failure does. Start from the
+[plugin author guide](../docs/reference/PLUGINS.md) and the
+[hello example](../examples/plugins/hello/).
 
 ## Testing
 
